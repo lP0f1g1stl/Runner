@@ -4,9 +4,9 @@ namespace Core.StateMachine.States
     {
         private StateMachineBase stateMachine;
 
-        public LoopState(StateMachineBase _stateMachine) 
+        public LoopState(StateMachineBase stateMachine) 
         {
-            stateMachine = _stateMachine;
+            this.stateMachine = stateMachine;
         }
         public void Enter()
         {

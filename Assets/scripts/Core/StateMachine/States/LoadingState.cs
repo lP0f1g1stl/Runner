@@ -1,15 +1,21 @@
+using Core.Loading;
+
 namespace Core.StateMachine.States
 {
     public class LoadingState : IState
     {
         private StateMachineBase stateMachine;
 
-        public LoadingState(StateMachineBase _stateMachine) 
+        private SceneLoadingManager sceneLoadingManager;
+
+        public LoadingState(StateMachineBase stateMachine, SceneLoadingManager sceneLoadingManager) 
         {
-            stateMachine = _stateMachine;
+            this.stateMachine = stateMachine;
+            this.sceneLoadingManager = sceneLoadingManager;
         }
-        public void Enter()
+        public async void Enter()
         {
+            await sceneLoadingManager.LoadScene((int)SceneType.Loading);
             stateMachine.EnterIn<LoopState>();
         }
         public void Exit()

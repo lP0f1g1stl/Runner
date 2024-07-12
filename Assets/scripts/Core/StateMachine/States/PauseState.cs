@@ -4,9 +4,9 @@ namespace Core.StateMachine.States
     {
         private StateMachineBase stateMachine;
 
-        public PauseState(StateMachineBase _stateMachine) 
+        public PauseState(StateMachineBase stateMachine) 
         {
-            stateMachine = _stateMachine;
+            this.stateMachine = stateMachine;
         }
         public void Enter()
         {
