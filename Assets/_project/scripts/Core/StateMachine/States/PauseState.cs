@@ -10,7 +10,7 @@ namespace Core.StateMachine.States
         }
         public void Enter()
         {
-            stateMachine.EnterIn<LoopState>();
+            //stateMachine.EnterIn<LoopState>();
         }
         public void Exit()
         {
