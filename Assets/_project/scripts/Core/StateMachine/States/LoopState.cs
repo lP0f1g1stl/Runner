@@ -1,16 +1,27 @@
+using Zenject;
+using Core.InputHandling;
+using Core.Loading;
+using UnityEngine;
+
 namespace Core.StateMachine.States
 {
     public class LoopState : IStateTickable
     {
         private StateMachineBase stateMachine;
 
-        public LoopState(StateMachineBase stateMachine) 
+        private IInputHandler inputHandler;
+        private SceneLoadingManager sceneLoadingManager;
+
+        public LoopState(StateMachineBase stateMachine, IInputHandler inputHandler, SceneLoadingManager sceneLoadingManager) 
         {
             this.stateMachine = stateMachine;
+            this.inputHandler = inputHandler;
+            this.sceneLoadingManager = sceneLoadingManager;
         }
+
         public void Enter()
         {
-            stateMachine.EnterIn<PauseState>();
+            //stateMachine.EnterIn<PauseState>();
         }
 
         public void Exit()
@@ -19,7 +30,7 @@ namespace Core.StateMachine.States
 
         public void Tick()
         {
-
+            inputHandler.CheckInputLoop();
         }
     }
 }

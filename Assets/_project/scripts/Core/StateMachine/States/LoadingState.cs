@@ -1,5 +1,4 @@
 using Core.Loading;
-using System.Threading.Tasks;
 
 namespace Core.StateMachine.States
 {
@@ -18,7 +17,7 @@ namespace Core.StateMachine.States
         {
             await sceneLoadingManager.LoadScene((int)SceneType.Loading);
             await sceneLoadingManager.LoadScene((int)SceneType.MainMenu);
-            stateMachine.EnterIn<LoopState>();
+            stateMachine.EnterIn<PauseState>();
         }
         public void Exit()
         {

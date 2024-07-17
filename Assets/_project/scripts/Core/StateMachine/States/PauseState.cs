@@ -1,16 +1,22 @@
+using Core.Loading;
+
 namespace Core.StateMachine.States
 {
     public class PauseState : IState
     {
         private StateMachineBase stateMachine;
 
-        public PauseState(StateMachineBase stateMachine) 
+        private SceneLoadingManager sceneLoadingManager;
+
+        public PauseState(StateMachineBase stateMachine, SceneLoadingManager sceneLoadingManager) 
         {
             this.stateMachine = stateMachine;
+            this.sceneLoadingManager = sceneLoadingManager;
         }
-        public void Enter()
+        public async void Enter()
         {
-            //stateMachine.EnterIn<LoopState>();
+            await sceneLoadingManager.LoadScene((int)SceneType.GameLoop);
+            stateMachine.EnterIn<LoopState>();
         }
         public void Exit()
         {

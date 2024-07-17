@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using Core.StateMachine.States;
+using Core.InputHandling;
 using Core.Loading;
 
 namespace Core.StateMachine
@@ -10,13 +11,13 @@ namespace Core.StateMachine
         private readonly Dictionary<Type, IState> states;
         private IState curState;
 
-        public StateMachineBase(SceneLoadingManager sceneLoadingManager)
+        public StateMachineBase(SceneLoadingManager sceneLoadingManager, IInputHandler inputHandler)
         {
             states = new Dictionary<Type, IState>()
             {
                 [typeof(LoadingState)] = new LoadingState(this, sceneLoadingManager),
-                [typeof(LoopState)] = new LoopState(this),
-                [typeof(PauseState)] = new PauseState(this)
+                [typeof(LoopState)] = new LoopState(this, inputHandler, sceneLoadingManager),
+                [typeof(PauseState)] = new PauseState(this, sceneLoadingManager)
             };
         }
 

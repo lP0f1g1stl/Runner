@@ -1,4 +1,7 @@
-public interface IStateTickable : IState
+namespace Core.StateMachine.States
 {
-    void Tick();
+    public interface IStateTickable : IState
+    {
+        void Tick();
+    }
 }
