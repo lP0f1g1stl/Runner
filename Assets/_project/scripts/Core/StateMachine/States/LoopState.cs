@@ -32,5 +32,9 @@ namespace Core.StateMachine.States
         {
             inputHandler.CheckInputLoop();
         }
+        public void FixedTick() 
+        {
+            
+        }
     }
 }

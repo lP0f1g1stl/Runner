@@ -38,5 +38,13 @@ namespace Core.StateMachine
                 state.Tick();
             }
         }
+        public void FixedTickIn() 
+        {
+            if (curState is IStateTickable)
+            {
+                IStateTickable state = (IStateTickable)curState;
+                state.FixedTick();
+            }
+        }
     }
 }

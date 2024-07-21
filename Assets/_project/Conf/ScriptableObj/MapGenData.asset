@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd49bbdf2dcb4948af24550d9dd1f69, type: 3}
+  m_Name: MapGenData
+  m_EditorClassIdentifier: 
+  mapSpeed: 0.5
+  visiblePartsNum: 5
+  mapParts:
+  - {fileID: 3447320992935302591, guid: 8eaf26d64cf67f34fb7d0fe10de4bfa3, type: 3}
+  - {fileID: 5389283280521303772, guid: 0915f26fe3c95484a9712dd613b3ab43, type: 3}
+  - {fileID: 6110986582530224038, guid: 7201129ea5bbbfd4a8387d9ddd0b24b1, type: 3}
+  - {fileID: 6110986582530224038, guid: 1a6b7aa7b1fdc1f4494f4f385154aedc, type: 3}
+  - {fileID: 6110986582530224038, guid: 4ef67731ac0bb854ab69d2438247ada8, type: 3}
+  - {fileID: 6110986582530224038, guid: d1e1d36de03a7b343a345abc2683135b, type: 3}
