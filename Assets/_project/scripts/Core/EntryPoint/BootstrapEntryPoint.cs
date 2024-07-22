@@ -35,9 +35,5 @@ namespace Core.EntryPoint
         {
             stateMachine.TickIn();
         }
-        private void FixedUpdate()
-        {
-            stateMachine.FixedTickIn();
-        }
     }
 }

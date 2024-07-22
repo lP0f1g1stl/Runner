@@ -7,6 +7,8 @@ namespace Gameplay.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private PlayerData playerData;
+        [Space]
         [SerializeField] private Transform playerBase;
         [SerializeField] private Transform player;
 
@@ -36,20 +38,20 @@ namespace Gameplay.Player
         private void TryToGoLeft() 
         {
             if (!sideStep?.IsActive() ?? false) sideStep = null;
-            if (sideStep != null || player.position.x >= 2) return;
-            sideStep = player.DOLocalMoveX(player.position.x + 2, 1);
+            if (sideStep != null || player.position.x <= -playerData.SlideLength) return;
+            sideStep = player.DOLocalMoveX(player.position.x - playerData.SlideLength, playerData.SlideDuration).SetEase(playerData.SlideEase);
         }
         private void TryToGoRight() 
         {
             if (!sideStep?.IsActive() ?? false) sideStep = null;
-            if (sideStep != null || player.position.x <= -2) return;
-            sideStep = player.DOLocalMoveX(player.position.x - 2, 1);
+            if (sideStep != null || player.position.x >= playerData.SlideLength) return;
+            sideStep = player.DOLocalMoveX(player.position.x + playerData.SlideLength, playerData.SlideDuration).SetEase(playerData.SlideEase);
         }
         private void TryToJump() 
         {
             if (!jump?.IsActive() ?? false) jump = null;
             if (jump != null) return;
-            jump = playerBase.DOLocalJump(Vector3.zero, 2, 1, 1);
+            jump = playerBase.DOLocalJump(Vector3.zero, playerData.JumpFore, 1, playerData.JumpDuration).SetEase(playerData.JumpEase);
         }
     }
 }

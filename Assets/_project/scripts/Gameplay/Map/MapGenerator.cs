@@ -26,9 +26,9 @@ public class MapGenerator : MonoBehaviour
         CreatePartHolders();
         ShowMapParts();
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        MoveHolders(); //////////// to FixedTick
+        MoveHolders(); //////////// to Tick
     }
 
     private void SpawnMapParts() 
@@ -44,7 +44,7 @@ public class MapGenerator : MonoBehaviour
         for (int i = 0; i < mapData.VisiblePartsNum; i++) 
         {
             partHolders[i] = (Instantiate(partHolder, gameObject.transform));
-            partHolders[i].transform.localPosition = spawnPoint.position + new Vector3(0, 0, mapParts[0].transform.localScale.z * i);
+            partHolders[i].transform.localPosition = spawnPoint.position + new Vector3(0, 0, 20 * i);
         }
     }
     private void ShowMapParts()
@@ -75,10 +75,10 @@ public class MapGenerator : MonoBehaviour
     {
         for(int i = 0; i < partHolders.Length; i++) 
         {
-            partHolders[i].transform.position -= new Vector3(0, 0, mapData.MapSpeed);
+            partHolders[i].transform.position -= new Vector3(0, 0, mapData.MapSpeed * Time.deltaTime);
             if (partHolders[i].transform.position.z <= resetPoint.position.z)
             {
-                partHolders[i].transform.localPosition = spawnPoint.position + new Vector3(0, 0, mapParts[0].transform.localScale.z * (partHolders.Length - 1));
+                partHolders[i].transform.localPosition = spawnPoint.position + new Vector3(0, 0, 20 * (partHolders.Length - 1));
                 HideMapPart();
                 ShowMapPart(i);
             }

@@ -1,7 +1,5 @@
-using Zenject;
 using Core.InputHandling;
 using Core.Loading;
-using UnityEngine;
 
 namespace Core.StateMachine.States
 {
@@ -31,10 +29,6 @@ namespace Core.StateMachine.States
         public void Tick()
         {
             inputHandler.CheckInputLoop();
-        }
-        public void FixedTick() 
-        {
-            
         }
     }
 }
