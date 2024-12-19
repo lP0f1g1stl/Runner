@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +25,7 @@ public class MapGenerator : MonoBehaviour
         CreatePartHolders();
         ShowMapParts();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         MoveHolders(); //////////// to Tick
     }
@@ -75,7 +74,7 @@ public class MapGenerator : MonoBehaviour
     {
         for(int i = 0; i < partHolders.Length; i++) 
         {
-            partHolders[i].transform.position -= new Vector3(0, 0, mapData.MapSpeed * Time.deltaTime);
+            partHolders[i].transform.position -= new Vector3(0, 0, mapData.MapSpeed * Time.fixedDeltaTime);
             if (partHolders[i].transform.position.z <= resetPoint.position.z)
             {
                 partHolders[i].transform.localPosition = spawnPoint.position + new Vector3(0, 0, 20 * (partHolders.Length - 1));
