@@ -5,18 +5,18 @@ using DG.Tweening;
 public class PlayerData : ScriptableObject
 {
     [Header("Jump")]
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float jumpDuration;
-    [SerializeField] private Ease jumpEase = 0;
+    [SerializeField] private float _jumpForce;
+    [SerializeField] private float _jumpDuration;
+    [SerializeField] private Ease _jumpEase = 0;
     [Header("Slide")]
-    [SerializeField] private float slideLength;
-    [SerializeField] private float slideDuration;
-    [SerializeField] private Ease slideEase = 0;
+    [SerializeField] private float _slideLength;
+    [SerializeField] private float _slideDuration;
+    [SerializeField] private Ease _slideEase = 0;
 
-    public float JumpFore => jumpForce;
-    public float JumpDuration => jumpDuration;
-    public Ease JumpEase => jumpEase;
-    public float SlideLength => slideLength;
-    public float SlideDuration => slideDuration;
-    public Ease SlideEase => slideEase;
+    public float JumpFore => _jumpForce;
+    public float JumpDuration => _jumpDuration;
+    public Ease JumpEase => _jumpEase;
+    public float SlideLength => _slideLength;
+    public float SlideDuration => _slideDuration;
+    public Ease SlideEase => _slideEase;
 }

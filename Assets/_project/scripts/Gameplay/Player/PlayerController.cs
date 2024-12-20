@@ -7,51 +7,51 @@ namespace Gameplay.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] private PlayerData playerData;
+        [SerializeField] private PlayerData _playerData;
         [Space]
-        [SerializeField] private Transform playerBase;
-        [SerializeField] private Transform player;
+        [SerializeField] private Transform _playerBase;
+        [SerializeField] private Transform _player;
 
-        private IInputHandler inputHandler;
+        private IInputHandler _inputHandler;
 
-        private Tween sideStep;
-        private Tween jump; 
+        private Tween _sideStep;
+        private Tween _jump; 
 
         [Inject]
         public void Construct(IInputHandler inputHandler) 
         {
-            this.inputHandler = inputHandler;
+            _inputHandler = inputHandler;
         }
         private void OnEnable()
         {
-            inputHandler.OnLeftClick += TryToGoLeft;
-            inputHandler.OnRightClick += TryToGoRight;
-            inputHandler.OnJumpClick += TryToJump;
+            _inputHandler.OnLeftClick += TryToGoLeft;
+            _inputHandler.OnRightClick += TryToGoRight;
+            _inputHandler.OnJumpClick += TryToJump;
         }
         private void OnDisable()
         {
-            inputHandler.OnLeftClick -= TryToGoLeft;
-            inputHandler.OnRightClick -= TryToGoRight;
-            inputHandler.OnJumpClick -= TryToJump;
+            _inputHandler.OnLeftClick -= TryToGoLeft;
+            _inputHandler.OnRightClick -= TryToGoRight;
+            _inputHandler.OnJumpClick -= TryToJump;
         }
 
         private void TryToGoLeft() 
         {
-            if (!sideStep?.IsActive() ?? false) sideStep = null;
-            if (sideStep != null || player.position.x <= -playerData.SlideLength) return;
-            sideStep = player.DOLocalMoveX(player.position.x - playerData.SlideLength, playerData.SlideDuration).SetEase(playerData.SlideEase);
+            if (!_sideStep?.IsActive() ?? false) _sideStep = null;
+            if (_sideStep != null || _player.position.x <= -_playerData.SlideLength) return;
+            _sideStep = _player.DOLocalMoveX(_player.position.x - _playerData.SlideLength, _playerData.SlideDuration).SetEase(_playerData.SlideEase);
         }
         private void TryToGoRight() 
         {
-            if (!sideStep?.IsActive() ?? false) sideStep = null;
-            if (sideStep != null || player.position.x >= playerData.SlideLength) return;
-            sideStep = player.DOLocalMoveX(player.position.x + playerData.SlideLength, playerData.SlideDuration).SetEase(playerData.SlideEase);
+            if (!_sideStep?.IsActive() ?? false) _sideStep = null;
+            if (_sideStep != null || _player.position.x >= _playerData.SlideLength) return;
+            _sideStep = _player.DOLocalMoveX(_player.position.x + _playerData.SlideLength, _playerData.SlideDuration).SetEase(_playerData.SlideEase);
         }
         private void TryToJump() 
         {
-            if (!jump?.IsActive() ?? false) jump = null;
-            if (jump != null) return;
-            jump = playerBase.DOLocalJump(Vector3.zero, playerData.JumpFore, 1, playerData.JumpDuration).SetEase(playerData.JumpEase);
+            if (!_jump?.IsActive() ?? false) _jump = null;
+            if (_jump != null) return;
+            _jump = _playerBase.DOLocalJump(Vector3.zero, _playerData.JumpFore, 1, _playerData.JumpDuration).SetEase(_playerData.JumpEase);
         }
     }
 }

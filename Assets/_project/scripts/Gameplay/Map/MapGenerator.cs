@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    [SerializeField] MapGenData mapData;
+    [SerializeField] private MapGenData _mapData;
     [Space]
-    [SerializeField] Transform spawnPoint;
-    [SerializeField] Transform resetPoint;
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private Transform _resetPoint;
     [Space]
-    [SerializeField] GameObject partHolder;
+    [SerializeField] private GameObject _partHolder;
     [Space]
-    [SerializeField] Transform unusedPartsHolder;
+    [SerializeField] private Transform _unusedPartsHolder;
 
-    private List<GameObject> mapParts = new List<GameObject>();
-    private Queue<GameObject> usedMapParts = new Queue<GameObject>();
+    private List<GameObject> _mapParts = new List<GameObject>();
+    private Queue<GameObject> _usedMapParts = new Queue<GameObject>();
 
     private GameObject[] partHolders;
 
     private void Awake()
     {
-        partHolders = new GameObject[mapData.VisiblePartsNum];
+        partHolders = new GameObject[_mapData.VisiblePartsNum];
 
         SpawnMapParts();
         CreatePartHolders();
@@ -32,18 +32,18 @@ public class MapGenerator : MonoBehaviour
 
     private void SpawnMapParts() 
     {
-        for (int i = 0; i < mapData.MapParts.Count; i++) 
+        for (int i = 0; i < _mapData.MapParts.Count; i++) 
         {
-            mapParts.Add(Instantiate(mapData.MapParts[i], unusedPartsHolder.transform));
-            mapParts[i].SetActive(false);
+            _mapParts.Add(Instantiate(_mapData.MapParts[i], _unusedPartsHolder.transform));
+            _mapParts[i].SetActive(false);
         }
     }
     private void CreatePartHolders() 
     {
-        for (int i = 0; i < mapData.VisiblePartsNum; i++) 
+        for (int i = 0; i < _mapData.VisiblePartsNum; i++) 
         {
-            partHolders[i] = (Instantiate(partHolder, gameObject.transform));
-            partHolders[i].transform.localPosition = spawnPoint.position + new Vector3(0, 0, 20 * i);
+            partHolders[i] = (Instantiate(_partHolder, gameObject.transform));
+            partHolders[i].transform.localPosition = _spawnPoint.position + new Vector3(0, 0, 20 * i);
         }
     }
     private void ShowMapParts()
@@ -55,29 +55,29 @@ public class MapGenerator : MonoBehaviour
     }
     private void ShowMapPart(int index) 
     {
-        int partIndex = Random.Range(0, mapParts.Count);
-        GameObject part = mapParts[partIndex];
+        int partIndex = Random.Range(0, _mapParts.Count);
+        GameObject part = _mapParts[partIndex];
         part.transform.SetParent(partHolders[index].transform);
         part.transform.localPosition = Vector3.zero;
         part.SetActive(true);
-        usedMapParts.Enqueue(part);
-        mapParts.RemoveAt(partIndex);
+        _usedMapParts.Enqueue(part);
+        _mapParts.RemoveAt(partIndex);
     }
     private void HideMapPart() 
     {
-        GameObject part = usedMapParts.Dequeue();
-        mapParts.Add(part);
+        GameObject part = _usedMapParts.Dequeue();
+        _mapParts.Add(part);
         part.SetActive(false);
-        part.transform.SetParent(unusedPartsHolder.transform);
+        part.transform.SetParent(_unusedPartsHolder.transform);
     }
     private void MoveHolders() 
     {
         for(int i = 0; i < partHolders.Length; i++) 
         {
-            partHolders[i].transform.position -= new Vector3(0, 0, mapData.MapSpeed * Time.fixedDeltaTime);
-            if (partHolders[i].transform.position.z <= resetPoint.position.z)
+            partHolders[i].transform.position -= new Vector3(0, 0, _mapData.MapSpeed * Time.fixedDeltaTime);
+            if (partHolders[i].transform.position.z <= _resetPoint.position.z)
             {
-                partHolders[i].transform.localPosition = spawnPoint.position + new Vector3(0, 0, 20 * (partHolders.Length - 1));
+                partHolders[i].transform.localPosition = _spawnPoint.position + new Vector3(0, 0, 20 * (partHolders.Length - 1));
                 HideMapPart();
                 ShowMapPart(i);
             }

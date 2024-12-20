@@ -9,7 +9,7 @@ namespace Core.StateMachine
     public class StateMachineBase
     {
         private readonly Dictionary<Type, IState> states;
-        private IState curState;
+        private IState _curState;
 
         public StateMachineBase(SceneLoadingManager sceneLoadingManager, IInputHandler inputHandler)
         {
@@ -25,16 +25,16 @@ namespace Core.StateMachine
         {
             if (states.TryGetValue(typeof(TState), out IState state))
             {
-                curState?.Exit();
-                curState = state;
-                curState.Enter();
+                _curState?.Exit();
+                _curState = state;
+                _curState.Enter();
             }
         }
         public void TickIn()
         {
-            if (curState is IStateTickable)
+            if (_curState is IStateTickable)
             {
-                IStateTickable state = (IStateTickable)curState;
+                IStateTickable state = (IStateTickable)_curState;
                 state.Tick();
             }
         }

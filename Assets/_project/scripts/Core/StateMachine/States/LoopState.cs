@@ -5,16 +5,16 @@ namespace Core.StateMachine.States
 {
     public class LoopState : IStateTickable
     {
-        private StateMachineBase stateMachine;
+        private StateMachineBase _stateMachine;
 
-        private IInputHandler inputHandler;
-        private SceneLoadingManager sceneLoadingManager;
+        private IInputHandler _inputHandler;
+        private SceneLoadingManager _sceneLoadingManager;
 
         public LoopState(StateMachineBase stateMachine, IInputHandler inputHandler, SceneLoadingManager sceneLoadingManager) 
         {
-            this.stateMachine = stateMachine;
-            this.inputHandler = inputHandler;
-            this.sceneLoadingManager = sceneLoadingManager;
+            _stateMachine = stateMachine;
+            _inputHandler = inputHandler;
+            _sceneLoadingManager = sceneLoadingManager;
         }
 
         public void Enter()
@@ -28,7 +28,7 @@ namespace Core.StateMachine.States
 
         public void Tick()
         {
-            inputHandler.CheckInputLoop();
+            _inputHandler.CheckInputLoop();
         }
     }
 }

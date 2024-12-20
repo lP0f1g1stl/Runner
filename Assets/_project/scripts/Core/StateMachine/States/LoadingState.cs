@@ -4,20 +4,20 @@ namespace Core.StateMachine.States
 {
     public class LoadingState : IState
     {
-        private StateMachineBase stateMachine;
+        private StateMachineBase _stateMachine;
 
-        private SceneLoadingManager sceneLoadingManager;
+        private readonly SceneLoadingManager _sceneLoadingManager;
 
         public LoadingState(StateMachineBase stateMachine, SceneLoadingManager sceneLoadingManager) 
         {
-            this.stateMachine = stateMachine;
-            this.sceneLoadingManager = sceneLoadingManager;
+            _stateMachine = stateMachine;
+            this._sceneLoadingManager = sceneLoadingManager;
         }
         public async void Enter()
         {
-            await sceneLoadingManager.LoadScene((int)SceneType.Loading);
-            await sceneLoadingManager.LoadScene((int)SceneType.MainMenu);
-            stateMachine.EnterIn<PauseState>();
+            await _sceneLoadingManager.LoadScene((int)SceneType.Loading);
+            await _sceneLoadingManager.LoadScene((int)SceneType.MainMenu);
+            _stateMachine.EnterIn<PauseState>();
         }
         public void Exit()
         {

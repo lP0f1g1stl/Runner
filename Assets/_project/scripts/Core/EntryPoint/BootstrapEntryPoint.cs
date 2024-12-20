@@ -9,31 +9,31 @@ namespace Core.EntryPoint
 {
     public class BootstrapEntryPoint : MonoBehaviour
     {
-        private StateMachineBase stateMachine;
+        private StateMachineBase _stateMachine;
 
-        private SceneLoadingManager sceneLoadingManager;
-        private IInputHandler inputHandler;
+        private SceneLoadingManager _sceneLoadingManager;
+        private IInputHandler _inputHandler;
 
 
         [Inject]
         public void Construct(SceneLoadingManager sceneLoadingManager, IInputHandler inputHandler) 
         {
-            this.sceneLoadingManager = sceneLoadingManager;
-            this.inputHandler = inputHandler;
+            _sceneLoadingManager = sceneLoadingManager;
+            _inputHandler = inputHandler;
         }
         private void Awake()
         {
-            stateMachine = new StateMachineBase(sceneLoadingManager, inputHandler);
+            _stateMachine = new StateMachineBase(_sceneLoadingManager, _inputHandler);
             DontDestroyOnLoad(gameObject);
         }
         private void Start()
         {
-            stateMachine.EnterIn<LoadingState>();
+            _stateMachine.EnterIn<LoadingState>();
         }
 
         private void Update()
         {
-            stateMachine.TickIn();
+            _stateMachine.TickIn();
         }
     }
 }

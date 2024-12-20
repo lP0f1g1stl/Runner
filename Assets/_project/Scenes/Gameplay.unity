@@ -231,9 +231,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d58bed3bdb57b541aec0b7c62e98158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: efa4010d22310f74d9714cefa4bbb69f, type: 2}
-  playerBase: {fileID: 1518959726}
-  player: {fileID: 145764544}
+  _playerData: {fileID: 11400000, guid: efa4010d22310f74d9714cefa4bbb69f, type: 2}
+  _playerBase: {fileID: 1518959726}
+  _player: {fileID: 145764544}
 --- !u!1 &145764543
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,11 +417,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56eb2698f8b1c2e43916d72beaa6c0d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapData: {fileID: 11400000, guid: 901038894225868459552553fd4c4327, type: 2}
-  spawnPoint: {fileID: 637009630}
-  resetPoint: {fileID: 1301332114}
-  partHolder: {fileID: 5438337128747771026, guid: 4092b668e877e374a9609bfc60cb89f4, type: 3}
-  unusedPartsHolder: {fileID: 1393409599}
+  _mapData: {fileID: 11400000, guid: 901038894225868459552553fd4c4327, type: 2}
+  _spawnPoint: {fileID: 637009630}
+  _resetPoint: {fileID: 1301332114}
+  _partHolder: {fileID: 5438337128747771026, guid: 4092b668e877e374a9609bfc60cb89f4, type: 3}
+  _unusedPartsHolder: {fileID: 1393409599}
 --- !u!1 &1116655828
 GameObject:
   m_ObjectHideFlags: 0

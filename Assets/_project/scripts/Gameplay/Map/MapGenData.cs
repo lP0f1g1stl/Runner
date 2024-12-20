@@ -5,21 +5,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MapGenData", menuName = "Data/MapGen Data", order = 1)]
 public class MapGenData : ScriptableObject
 {
-    [Range(1, 10)] [SerializeField] int mapSpeed;
+    [Range(1, 10)] [SerializeField] private int _mapSpeed = 1;
     [Space]
-    [Range(2, 10)] [SerializeField] int visiblePartsNum;
+    [Range(2, 10)] [SerializeField] private int _visiblePartsNum = 1;
     [Space]
-    [SerializeField] List<GameObject> mapParts;
+    [SerializeField] private List<GameObject> _mapParts;
 
-    public int MapSpeed => mapSpeed;
-    public int VisiblePartsNum => visiblePartsNum;
-    public List<GameObject> MapParts => mapParts;
+    public int MapSpeed => _mapSpeed;
+    public int VisiblePartsNum => _visiblePartsNum;
+    public List<GameObject> MapParts => _mapParts;
 
     private void OnValidate()
     {
-        if(visiblePartsNum > mapParts.Count - 1) 
+        if(_visiblePartsNum > _mapParts.Count - 1) 
         {
-            visiblePartsNum = mapParts.Count - 1;
+            _visiblePartsNum = _mapParts.Count - 1;
         }
     }
 }

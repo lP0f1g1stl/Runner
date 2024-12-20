@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c007dbdd7590494d9bf12acc3447af3, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  jumpForce: 2
-  jumpDuration: 1
-  jumpEase: 0
-  slideLength: 2
-  slideDuration: 1
-  slideEase: 0
+  _jumpForce: 2
+  _jumpDuration: 1
+  _jumpEase: 0
+  _slideLength: 2
+  _slideDuration: 1
+  _slideEase: 0

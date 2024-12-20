@@ -7,26 +7,26 @@ namespace Core.Loading
 {
     public class LoadingHandler : MonoBehaviour
     {
-        private Slider loadingBar;
-        private SceneLoadingManager sceneLoadingManager;
+        private Slider _loadingBar;
+        private SceneLoadingManager _sceneLoadingManager;
 
         [Inject]
         public void Construct(SceneLoadingManager sceneLoadingManager)
         {
-            this.sceneLoadingManager = sceneLoadingManager;
+            this._sceneLoadingManager = sceneLoadingManager;
         }
         private void Awake()
         {
-            loadingBar = GetComponent<Slider>();
+            _loadingBar = GetComponent<Slider>();
         }
         private void OnEnable()
         {
-            sceneLoadingManager.OnProgressChange += ChangeValue;
+            _sceneLoadingManager.OnProgressChange += ChangeValue;
         }
         private void ChangeValue(float value) 
         {
             Debug.Log(value);
-            loadingBar.value = value;
+            _loadingBar.value = value;
         }
     }
 }
