@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd49bbdf2dcb4948af24550d9dd1f69, type: 3}
   m_Name: MapGenData
   m_EditorClassIdentifier: 
-  _mapSpeed: 0
+  _mapSpeed: 4
   _visiblePartsNum: 4
   _mapParts:
   - {fileID: 7946078409535746638, guid: d9f5d9e3d80bf784e9ccb05866bcb561, type: 3}
